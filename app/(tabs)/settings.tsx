@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 
-export default function TabTwoScreen() {
+export default function SettingsScreen() {
   return (
     <View></View>
   );
