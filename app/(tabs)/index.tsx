@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 export default function ListScreen() {
   return (
     <View style={styles.container}>
-      <IconButton onPress={() => {}}/>
+      <IconButton iconName="add" onPress={() => {}}/>
     </View>
   );
 }
