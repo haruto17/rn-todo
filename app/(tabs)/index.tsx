@@ -3,7 +3,7 @@ import TaskInputModal from '@/components/task-input-modal';
 import TodoItem from '@/components/todo-item';
 import { TodosProvider, useTodos } from '@/contexts/todos-context';
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 export default function ListScreen() {
   return (
