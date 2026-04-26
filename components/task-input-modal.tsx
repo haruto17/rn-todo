@@ -1,9 +1,9 @@
-import { Modal, StyleSheet, Text, useColorScheme, View } from "react-native";
+import { Modal, StyleSheet, useColorScheme, View } from "react-native";
 import CustomTextInput from "./custom-text-input";
 import { useState } from "react";
 import TextButton from "./text-button";
 import { Colors } from "@/constants/theme";
-import { goBack } from "expo-router/build/global-state/routing";
+import { useTodos } from "@/contexts/todos-context";
 
 type TaskInputModalProps = {
   isVisible: boolean;
@@ -13,6 +13,7 @@ type TaskInputModalProps = {
 export default function TaskInputModal({isVisible, onClose}: TaskInputModalProps) {
   const colorScheme = useColorScheme() ?? 'light';
   const [title, setTitle] = useState<string>('');
+  const {addTodo} = useTodos();
 
   const onChangeText = (text: string) => {
     setTitle(text);
@@ -23,6 +24,7 @@ export default function TaskInputModal({isVisible, onClose}: TaskInputModalProps
       return;
     }
 
+    addTodo(title);
     setTitle('');
     onClose?.();
   }
