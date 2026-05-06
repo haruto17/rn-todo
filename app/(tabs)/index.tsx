@@ -3,7 +3,7 @@ import TaskInputModal from '@/components/task-input-modal';
 import TodoItem from '@/components/todo-item';
 import { TodosProvider, useTodos } from '@/contexts/todos-context';
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ListScreen() {
@@ -38,10 +38,15 @@ function TodoList() {
   const {todos} = useTodos();
 
   return (
-    <SafeAreaView>
-      {todos.map(todo => (
-        <TodoItem key={todo.id} todo={todo} />
-      ))}
+    <SafeAreaView style={styles.todoListSafeArea}>
+      <ScrollView
+        contentContainerStyle={styles.todoListContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {todos.map(todo => (
+          <TodoItem key={todo.id} todo={todo} />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -59,7 +64,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   listContainer: {
+    flex: 1,
     marginVertical: 8,
     marginHorizontal: 16,
-  }
+  },
+  todoListSafeArea: {
+    flex: 1,
+  },
+  todoListContent: {
+    paddingBottom: 96,
+  },
 })
