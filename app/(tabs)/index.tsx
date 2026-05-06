@@ -4,6 +4,7 @@ import TodoItem from '@/components/todo-item';
 import { TodosProvider, useTodos } from '@/contexts/todos-context';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ListScreen() {
   return (
@@ -22,11 +23,11 @@ function ListScreenBody() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <IconButton iconName="add" onPress={() => {setTaskInputModalVisible(true);}} />
-      </View>
       <View style={styles.listContainer}>
         <TodoList />
+      </View>
+      <View style={styles.buttonContainer}>
+        <IconButton iconName='add' onPress={() => {setTaskInputModalVisible(true);}} />
       </View>
       <TaskInputModal isVisible={isTaskInputModalVisible} onClose={onTaskInputModalClose} />
     </View>
@@ -37,11 +38,11 @@ function TodoList() {
   const {todos} = useTodos();
 
   return (
-    <View>
+    <SafeAreaView>
       {todos.map(todo => (
         <TodoItem key={todo.id} todo={todo} />
       ))}
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -51,12 +52,14 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    marginRight: 24,
-    marginBottom: 24,
+    position: 'absolute',
+    right: 24,
+    bottom: 24,
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
   listContainer: {
+    marginVertical: 8,
     marginHorizontal: 16,
   }
 })
